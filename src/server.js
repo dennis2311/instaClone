@@ -9,7 +9,7 @@ import utils from "./utils";
 import { sendSecretMail } from "./utils";
 
 // This can't be until verifying sendgrid mailer
-// sendSecretMail("dennis2311@daum.net", "111223");
+sendSecretMail("dennis2311@daum.net", "111223");
 
 const PORT = process.env.PORT || 4000;
 

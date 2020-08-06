@@ -11,16 +11,13 @@ export const generateSecret = () => {
   return `${adjectives[randomNumber]} ${nouns[randomNumber]}`;
 };
 
-export const sendMail = async (email) => {
-  const options = {
-    auth: {
-      api_user: process.env.SENDGRID_USERNAME,
-      api_key: process.env.SENDGRID_PASSWORD,
-    },
-  };
-  const client = await nodemailer.createTransport(sgTransport(options));
-  return client.sendMail(email);
-};
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USERNAME,
+    pass: process.env.GMAIL_PASSWORD,
+  },
+});
 
 export const sendSecretMail = (address, secret) => {
   const email = {
@@ -29,5 +26,14 @@ export const sendSecretMail = (address, secret) => {
     subject: "Your Secret Words Ready",
     html: `<br>Hello! your login secret word is ${secret}<br>`,
   };
-  return sendMail(email);
+
+  transporter.sendMail(email, function(error, info) {
+    if (error) {
+      console.log(error);
+      return false;
+    } else {
+      console.log(`Email sent : ${info}`);
+      return true;
+    }
+  });
 };
