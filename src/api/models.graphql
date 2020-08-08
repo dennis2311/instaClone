@@ -2,14 +2,17 @@ type User {
   id: ID!
   userName: String!
   email: String!
-  firstName: String!
+  firstName: String
   lastName: String
+  fullName: String
   bio: String
   posts: [Post!]!
   likes: [Like!]!
   comments: [Comment!]!
   following: [User!]!
   followers: [User!]!
+  isFollowing: Boolean!
+  isSelf: Boolean!
   rooms: [Room!]!
   loginSecret: String
 }
@@ -55,4 +58,9 @@ type Message {
   from: User!
   to: User!
   room: Room!
+}
+
+type UserProfile {
+  user: User!
+  posts: [Post!]!
 }
