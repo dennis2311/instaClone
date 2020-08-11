@@ -1,0 +1,8 @@
+type seeRoomRespose {
+  room: Room!
+  messages: [Message!]!
+}
+
+type Query {
+  seeRoom(id: String!): seeRoomRespose!
+}

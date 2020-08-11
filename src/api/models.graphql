@@ -5,6 +5,7 @@ type User {
   firstName: String
   lastName: String
   fullName: String
+  avatar: String
   bio: String
   posts: [Post!]!
   likes: [Like!]!
@@ -68,7 +69,7 @@ type Room {
 
 type Message {
   id: ID!
-  test: String!
+  text: String!
   from: User!
   to: User!
   room: Room!
