@@ -13,9 +13,10 @@ export default {
         if (receiverId !== user.id) {
           existingRooms = await prisma.rooms({
             where: {
-              participants_some: {
-                AND: [{ id_in: user.id }, { id_in: receiverId }],
-              },
+              AND: [
+                { participants_some: { id_in: user.id } },
+                { participants_some: { id_in: receiverId } },
+              ],
             },
           });
           if (existingRooms.length !== 0) {
