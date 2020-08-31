@@ -25,7 +25,7 @@ export default {
       });
     },
     likeCount: (parent) => {
-      prisma
+      return prisma
         .likesConnection({
           where: { post: { id: parent.id } },
         })
